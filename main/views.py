@@ -4,29 +4,32 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.template.defaultfilters import slugify
+from django.core.paginator import Paginator
 from .models import *
 from account.models import User
-import json
 from .forms import *
 
 
 # prefetch_related('user_liked') Many to many feld uchun
 
 def homeView(request):
-    print(request.user)
     return render(request, "main/index.html",)
 
 def BooksView(request):
     form = StockSearchForm(request.POST or None)
-    queryset = Book.objects.all().order_by("-id")
+    queryset = Book.objects.select_related('genre', 'author').filter(is_checked = True).all()
+    paginator = Paginator(queryset, 12)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
         "form": form,
-        "object_list": queryset,
+        "object_list": page_obj,
     }
     #Searching an item and category
     if request.method == 'POST':
         if form['genre'].value():
-            queryset = Book.objects.select_related('genre', 'author').filter(genre=form['genre'].value())
+            queryset = queryset.filter(genre=form['genre'].value())
         if form['location'].value():
             queryset = queryset.select_related('genre', 'author').filter(location=form['location'].value())
         if form['query'].value():
@@ -47,7 +50,7 @@ def MyBookView(request):
 def delete_view(request, url):
     obj = get_object_or_404(Book, slug = url)
     if obj.author != request.user:
-        return redirect('/mybooks')
+        return render(request, "500.html")
     else:
         context ={'object': obj}
         if request.method =="POST":
@@ -68,7 +71,7 @@ class UpdateBook(LoginRequiredMixin, UpdateView):
     def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()
         if obj.author != self.request.user:
-            return redirect('/')
+            return render(request, "500.html")
         return super(UpdateBook, self).dispatch(request, *args, **kwargs)
     
     def get_context_data(self, **kwargs):
@@ -76,17 +79,23 @@ class UpdateBook(LoginRequiredMixin, UpdateView):
         book = Book.objects.select_related('author', 'genre').filter(author=self.request.user)
         context["books"] = book
         return context
+    
+    def form_valid(self, form):
+        form.instance.is_checked = False
+        form.instance.is_view = False
+        return super().form_valid(form)
 
     
 def BookView(request, slug):
     book = Book.objects.select_related('genre', 'author').get(slug=slug)
-    author_books = Book.objects.select_related('genre', 'author').filter(author = book.author)[:4]
-    related_books = Book.objects.select_related('genre', 'author').filter(genre=book.genre)[:4]
-    context = {
-        "object": book,
-        "books": related_books,
-        "author_books": author_books
-    }
+    author_books = Book.objects.select_related('genre', 'author').filter(is_checked = True).filter(author = book.author)[:4]
+    related_books = Book.objects.select_related('genre', 'author').filter(is_checked = True).filter(genre=book.genre)[:4]
+    if book.is_checked == True or request.user.is_staff or book.author == request.user:
+        context = {
+            "object": book,
+            "books": related_books,
+            "author_books": author_books
+        }
     return render(request, "advert/detail.html", context)
 
 class BookCreate(LoginRequiredMixin, CreateView):
@@ -107,5 +116,3 @@ class BookCreate(LoginRequiredMixin, CreateView):
         form.instance.slug =  slugify(form.instance.title)   
         return super().form_valid(form)
     
-def page_not_found_view(request, exception):
-    return render(request, '404.html', status=404)

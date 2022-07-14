@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-import django_heroku
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +23,7 @@ SECRET_KEY = 'django-insecure-ai6duua$*di00rk*4))u$c^a70rj&deesjm+$eemy5b*&*43ag
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -38,11 +36,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'account',
+    'AdminDashboard',
     'django_resized',
 ]
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,7 +51,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'book_store.urls'
-django_heroku.settings(locals())
 
 TEMPLATES = [
     {
@@ -77,7 +74,6 @@ LOGOUT_URL = "/profile/logout"
 AUTH_USER_MODEL = 'account.User'
 
 
-WSGI_APPLICATION = 'book_store.wsgi.application'
 
 DJANGORESIZED_DEFAULT_SIZE = [80, 80]  # noqa
 DJANGORESIZED_DEFAULT_QUALITY = 85  # noqa
@@ -135,10 +131,8 @@ import os
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
-STATICFILES_DIRS = (
-  os.path.join(BASE_DIR, 'staticfiles')) ,
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'staticfiles'),)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

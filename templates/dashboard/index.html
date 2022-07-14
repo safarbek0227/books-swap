@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <br><br><br>
+  <div class="container">
+    <h2>Admin table</h2>
+    <p>check advert</p>
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th colspan="4">
+            <h3>Unread</h3>
+          </th>
+          <th colspan="6">
+            <form action="" method="post" onchange="submit()">
+              {% csrf_token %}
+              {{form.category}}
+            </form>
+          </th>
+        </tr>
+        <tr>
+          <th>Is_checked</th>
+          <th>is_view</th>
+          <th>title</th>
+          <th>book author</th>
+          <th>book author pen</th>
+          <th>genre</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for book in obj_list %}
+        <tr>
+          <td><input type="checkbox" {{ book.is_checked|yesno:'checked disabled,' }} id="{{book.id}}"></td>
+          <td><input type="checkbox" {{ book.is_view|yesno:'checked disabled,' }} id="{{book.id}}"></td>
+          <td><a href="{% url 'main:detail' book.slug %}">{{book.title}}</a></td>
+          <td>{{book.author.name}}</td>
+          <td>{{book.author_pen}}</td>
+          <td>{{book.genre}}</td>
+          {% if can_changes %}
+          <td><button onclick="calc()">submit</button></td>
+          {% endif %}
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="6">
+            <h3>Not</h3>
+          </td>
+        </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+  </div>
+  <style>
+    select {
+      width: 50%;
+      padding: 5px;
+    }
+  </style>
+
+  <script>
+    function send(data) {
+      if (window.XMLHttpRequest) {
+        var xhttp = new XMLHttpRequest();
+      } else {  // code for IE6, IE5
+        var xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xhttp.onreadystatechange = function () {
+        if (xhttp.readyState === 4 && xhttp.status === 200) {
+          var data = JSON.parse(this.responseText);
+          alert(data.success)
+          location.reload();
+        }
+        if (xhttp.status === 500) {
+          alert('some one changes this site')
+          location.reload();
+        }
+
+      }
+      var url = "/admin/check"
+      xhttp.open("GET", url + `?data=${data}`, true);
+      xhttp.send();
+    }
+
+    function calc(e) {
+      maintag = event.target.parentNode.parentNode
+      input = maintag.querySelectorAll('input')
+      if (input[0].id == input[1].id && (input[0].checked || input[1].checked)) {
+        obj = {
+          id: input[0].id,
+          is_checked: input[0].checked,
+          is_view: input[1].checked
+        }
+        send(JSON.stringify(obj))
+      }
+      else {
+        console.log('not')
+      }
+    }
+  </script>
+</body>
+
+</html>

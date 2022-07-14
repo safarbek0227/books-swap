@@ -4,6 +4,7 @@ from account.models import User
 from django_resized import ResizedImageField
 from main.slug import unique_slugify
 
+
 # Create your models here.
 class Genre(models.Model):
     title = models.CharField("Title", max_length=256)
@@ -39,9 +40,11 @@ class Book(models.Model):
     location = models.CharField('loacation', max_length=256,  choices=ADDRESS)
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE, related_name="books", default=None, null=True)
     description = models.TextField("Description", max_length=200)
-    image = ResizedImageField("Image", size=[360, 360], upload_to="book_images%Y%m")
+    image = ResizedImageField("Image", size=[360, 360], upload_to="book_images")
     created_at = models.DateTimeField("Created time", auto_now_add=True)
     likes_count = models.PositiveIntegerField("Likes", default=0)
+    is_checked = models.BooleanField(default=False)
+    is_view = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.title}"
@@ -53,6 +56,8 @@ class Book(models.Model):
         slug = '%s' % (self.title)
         unique_slugify(self, slug)
         super(Book, self).save()
+
+
     class Meta:
         db_table = "book"
         unique_together = ["slug"]

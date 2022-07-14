@@ -23,7 +23,6 @@ def register(request):
             user.set_password(form.cleaned_data['password'])
             user.save()
             auth.login(request,user)
-            print(request.user)
             return redirect('/profile/')
     else:
         form = UserRegisterForm()

@@ -292,6 +292,7 @@ main .profile .change-button .btn-submit {
 
     main .box .content p {
         font-size: large;
+        line-height: 25px;
     }
 
     main .box img {
@@ -465,7 +466,7 @@ main .profile .change-button .btn-submit {
     main .box .book-btn {
         width: 100px;
         height: 40px;
-        margin-top: -30px;
+        margin-top: -20px;
         margin-left: 50px;
         border-radius: 15px;
         padding: 8px;
@@ -1321,3 +1322,84 @@ footer .input-group input {
 @media (max-width: 360px) {}
 
 @media (max-width: 290px) {}
+
+
+
+.paginator,
+.paginator *,
+.paginator *:before,
+.paginator *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-kerning: auto;
+}
+.paginator {
+  font-size: 8pt;
+  line-height: 1;
+  font-weight: 400;
+  font-family: 'Open Sans', 'Source Sans Pro', Roboto, 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Myriad Pro', 'Segoe UI', Myriad, Helvetica, 'Lucida Grande', 'DejaVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', Tahoma, Geneva, Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  margin: 1em auto;
+  text-align: center;
+  transition: font-size .2s ease-in-out;
+}
+.paginator ul {
+  list-style-type: none;
+  display: inline;
+  font-size: 100%;
+  margin: 0;
+  padding: .5em;
+}
+.paginator ul li {
+  display: inline-block;
+  font-size: 100%;
+  width: auto;
+  border-radius: 3px;
+}
+.paginator > a {
+  font-size: 140%;
+}
+.paginator a {
+  color: #777;
+  font-size: 100%;
+  padding: .5em;
+}
+.paginator a:focus,
+.paginator a:hover {
+  color: #f60;
+}
+.paginator li.current {
+    padding: 6px;
+  background: rgba(0,0,0,.1)
+}
+/* Disabled & Hidden Styles */
+.paginator .disabled,
+.paginator [hidden],
+.paginator [disabled] {
+  opacity: .5;
+  pointer-events: none;
+}
+@media (min-width: 350px) {
+  .paginator {
+    font-size: 10pt;
+  }
+}
+@media (min-width: 500px) {
+  .paginator {
+    font-size: 12pt;
+  }
+}
+@media (min-width: 700px) {
+  .paginator {
+    font-size: 14pt;
+  }
+}
+@media (min-width: 900px) {
+  .paginator {
+    font-size: 16pt;
+  }
+}
