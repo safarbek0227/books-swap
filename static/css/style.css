@@ -156,7 +156,6 @@ main .box img {
 
 main .box .book-btn {
     width: 200px;
-    height: 60px;
     border-radius: 15px;
     padding: 15px 20px;
     color: #fff;
@@ -164,8 +163,8 @@ main .box .book-btn {
     text-align: center;
     text-decoration: none;
     background-color: #f27d1d;
+    transition: all 0.5s ease-in;
 }
-
 main.login,
 main.center {
     display: flex;

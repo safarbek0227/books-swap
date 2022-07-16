@@ -26,6 +26,7 @@
 <div class="container">
   <div class="advert-section mt-5">
     <div class="row">
+      
       {% for book in object_list %}
       <div class="col-6 col-sm-6 col-md-4 col-lg-3">
         <a href="{% url 'main:detail' book.slug %}" class="text-dark" style="text-decoration: none;">
@@ -49,7 +50,11 @@
           </div>
         </a>
       </div>
+      {% empty %}
+      <h1 class="m-5">Hech narsa topilmadi</h1>
       {% endfor %}
+
+  
 
     </div>
   </div>
@@ -60,15 +65,16 @@
     <a href="?page={{ object_list.previous_page_number }}"><i class="fas fa-chevron-left"></i></a>
     {% endif %}
     <ul>
-      {% if object_list.paginator.page_range > 1 %}
-      {% for i in object_list.paginator.page_range %}
-        {% if object_list.number == i %}
-        <li class=current><a href="" disabled>{{ i }}</a ></li>
-        {% else %}
-        <li><a href="?page={{ i }}">{{ i }}</a></li>
-        {% endif %}
-      {% endfor %}
+      {% if object_list > 1 %}
+        {% for i in object_list.paginator.page_range %}
+          {% if object_list.number == i %}
+          <li class=current><a href="" disabled>{{ i }}</a ></li>
+          {% else %}
+          <li><a href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+          {% endfor %}
       {% endif %}
+      
     </ul>
 
     {% if object_list.has_next %}

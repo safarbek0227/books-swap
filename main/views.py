@@ -18,14 +18,6 @@ def homeView(request):
 def BooksView(request):
     form = StockSearchForm(request.POST or None)
     queryset = Book.objects.select_related('genre', 'author').filter(is_checked = True).all()
-    paginator = Paginator(queryset, 12)
-
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    context = {
-        "form": form,
-        "object_list": page_obj,
-    }
     #Searching an item and category
     if request.method == 'POST':
         if form['genre'].value():
@@ -35,10 +27,15 @@ def BooksView(request):
         if form['query'].value():
             queryset = queryset.select_related('genre', 'author').filter(title__icontains=form['query'].value())    
                 
-        context = {
-            "form": form,
-            "object_list": queryset,
-        }
+    paginator = Paginator(queryset, 12)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        "form": form,
+        "object_list": page_obj,
+    }
+
     return render(request, "advert/book_list.html", context)
 
 
