@@ -139,6 +139,10 @@
         margin: 120px 10% 0 10%;
     }
 </style>
+{% endblock %}
+
+{% block code %}
+<script src="/static/js/resizer_image.js"></script>
 <script>
     let input = document.querySelectorAll('input');
     for (var i = 0; i < input.length; i++) {
@@ -178,5 +182,11 @@
         }
     }
 
+$('#id_image').imageUploadResizer({
+    max_width: 360, 
+    max_height: 360, 
+    quality: 1, 
+    do_not_resize: ['gif', 'svg'],
+});
 </script>
 {% endblock %}

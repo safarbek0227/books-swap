@@ -22,8 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ai6duua$*di00rk*4))u$c^a70rj&deesjm+$eemy5b*&*43ag'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-ALLOWED_HOSTS = ['*']
+DEBUG = True
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'main',
     'account',
     'AdminDashboard',
-    'django_resized',
 ]
 
 MIDDLEWARE = [
@@ -74,13 +73,6 @@ LOGOUT_URL = "/profile/logout"
 AUTH_USER_MODEL = 'account.User'
 
 
-
-DJANGORESIZED_DEFAULT_SIZE = [80, 80]  # noqa
-DJANGORESIZED_DEFAULT_QUALITY = 85  # noqa
-DJANGORESIZED_DEFAULT_KEEP_META = True  # noqa
-# DJANGORESIZED_DEFAULT_FORCE_FORMAT = "PNG"  # noqa
-DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {"PNG": ".png", "JPEG": ".jpg"}  # noqa
-DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True  # noqa
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases

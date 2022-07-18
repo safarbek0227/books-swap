@@ -59,7 +59,7 @@ def delete_view(request, url):
 
 class UpdateBook(LoginRequiredMixin, UpdateView):
     model = Book
-    template_name = 'advert/add_advert.html'
+    template_name = 'advert/update_advert.html'
     fields = ("title", "author_pen", "genre", "description", "image")
     success_url = '/mybooks/'
     slug_field = 'slug'

@@ -1,7 +1,6 @@
 from django.db import models
 from django.conf import settings
 from account.models import User
-from django_resized import ResizedImageField
 from main.slug import unique_slugify
 
 
@@ -40,7 +39,7 @@ class Book(models.Model):
     location = models.CharField('loacation', max_length=256,  choices=ADDRESS)
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE, related_name="books", default=None, null=True)
     description = models.TextField("Description", max_length=200)
-    image = ResizedImageField("Image", size=[360, 360], upload_to="book_images")
+    image = models.ImageField("Image", upload_to="book_images")
     created_at = models.DateTimeField("Created time", auto_now_add=True)
     likes_count = models.PositiveIntegerField("Likes", default=0)
     is_checked = models.BooleanField(default=False)

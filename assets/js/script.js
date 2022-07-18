@@ -13,3 +13,4 @@ $('html').click(function(e) {
     }
     $('.dropdown.active').not($curr).removeClass('active');
   });
+

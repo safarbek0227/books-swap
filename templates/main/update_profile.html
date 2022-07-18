@@ -67,10 +67,12 @@
     overflow: auto;
   }
   </style>
+{% endblock %}
+
+{% block code %}
+<script src="/static/js/resizer_image.js"></script>
 <script>
-
-
-    let avatar_input = document.querySelector('#id_avatar');
+      let avatar_input = document.querySelector('#id_avatar');
     var target = document.getElementById('profileImg')
     let input = document.querySelectorAll('input');
     for (var i = 2; i < input.length-1; i++) {
@@ -101,5 +103,11 @@
         alert("This is not an Image File!");
       }
     }
-  </script>
+  $('#id_avatar').imageUploadResizer({
+      max_width: 120, // Defaults 1000
+      max_height: 120, // Defaults 1000
+      quality: 1, // Defaults 1
+      do_not_resize: ['gif', 'svg'], // Defaults []
+  });
+</script>
 {% endblock %}

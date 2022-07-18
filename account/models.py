@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
-from django_resized import ResizedImageField
 
 class User(AbstractUser):
 	GENDER = (
@@ -28,7 +27,7 @@ class User(AbstractUser):
 	username = models.CharField("Username", max_length=256, unique=True, null=True)
 	age = models.PositiveIntegerField("Age", null=True)
 	phone = models.CharField("Phone", max_length=128)
-	avatar = ResizedImageField("Image", upload_to="user-images/", null=True, blank=True, default='default.png')
+	avatar = models.ImageField("Image", upload_to="user-images/", null=True, blank=True, default='default.png')
 	gender = models.CharField("Gender", max_length=128, choices=GENDER)
 	address = models.CharField("Address", max_length=128, choices=ADDRESS)
 
