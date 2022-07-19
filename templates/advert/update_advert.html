@@ -74,7 +74,7 @@
 </header>
 <div class="container">
     <section class="advert-section mt-5">
-        <h1>Avtorning barcha e’lonlari:</h1>
+        <h1>Sizning barcha  e’lonlaringiz</h1>
         <div class="row">
             {% for book in books%}
             <div class="col-6 col-sm-6 col-md-4 col-lg-3">
@@ -95,6 +95,16 @@
                                 <span>{{book.genre}}</span>
                             </li>
                         </ul>
+                        {% if book.is_checked %}
+                          <span class="fa-solid fa-check">&nbsp &nbsp Sotuvda qoyildi</span>
+                          {% else %}
+                            {% if book.is_view %}
+                                <span class="fa-solid fa-ban">&nbsp sotish taqiqlandi</span>
+                            {% else %}
+                                <span class="fa-solid fa-envelopes-bulk">&nbsp korib chiqilmoqda</span>
+                            {% endif %}
+                          {% endif %}
+                          <br>
                         <span class="about-box">{{book.author.address}} <br> {{book.created_at}}</span>
                     </div>
                 </a>
@@ -109,6 +119,13 @@
 {% block code %}
 <script src="/static/js/resizer_image.js"></script>
 <script>
+    let input = document.querySelectorAll('input');
+    arr = ['', '', 'Sarlavha', 'Muallif']
+    for (var i = 0; i < input.length; i++) {
+        input[i].classList.add('value-input')
+        input[i].setAttribute('placeholder', `${arr[i]}`)
+        input[i].setAttribute('autocomplete', "off")
+    }
     let input_file = document.querySelector('#id_image');
     input_file.style = 'display: none;'
     let target = document.querySelector('#uploadImg')

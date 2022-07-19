@@ -3,18 +3,18 @@ from .models import User
 
 
 class UserRegisterForm(forms.ModelForm):
-    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'placeholder':'password'}))
-    repeat_password = forms.CharField(label='Repeat password', widget=forms.PasswordInput(attrs={'placeholder':'Repeat password'}))
+    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'placeholder':'parol'}))
+    repeat_password = forms.CharField(label='Repeat password', widget=forms.PasswordInput(attrs={'placeholder':'parolni qayta yozing'}))
 
     class Meta:
         model = User
         fields = ('name', 'surname', 'username', 'age', 'phone', 'gender', 'address')
         widgets = {
-            "username":forms.widgets.TextInput(attrs={'class':'input', 'placeholder':'Username', 'autocomplete':"off"}),
-            "name":forms.widgets.TextInput(attrs={'class':'input', 'placeholder':'Name', 'autocomplete':"off"}),
-            "surname":forms.widgets.TextInput(attrs={'class':'input', 'placeholder':'Sourname', 'autocomplete':"off"}),
-            'age': forms.TextInput(attrs={'class': 'unique d-block', 'placeholder': 'Age', 'autocomplete':"off"}),
-            'phone': forms.TextInput(attrs={'pattern': r'[0-9]{2}-[0-9]{3}-[0-9]{2}-[0-9]{2}', 'placeholder': 'XX-XXX-XX-XX', 'class': '' , 'autocomplete':"off"})
+            "username":forms.widgets.TextInput(attrs={'class':'input', 'placeholder':'Foydalanuvchi nomi', 'autocomplete':"off"}),
+            "name":forms.widgets.TextInput(attrs={'class':'input', 'placeholder':'Ismingiz', 'autocomplete':"off"}),
+            "surname":forms.widgets.TextInput(attrs={'class':'input', 'placeholder':'Familyangiz', 'autocomplete':"off"}),
+            'age': forms.TextInput(attrs={'class': 'unique d-block', 'placeholder': 'Yoshingiz', 'autocomplete':"off"}),
+            'phone': forms.TextInput(attrs={'pattern': r'[0-9]{2}-[0-9]{3}-[0-9]{2}-[0-9]{2}', 'placeholder': 'Nomeringiz: 99-999-99-99', 'class': '' , 'autocomplete':"off"})
         }
 
 

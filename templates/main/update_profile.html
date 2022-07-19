@@ -72,13 +72,14 @@
 {% block code %}
 <script src="/static/js/resizer_image.js"></script>
 <script>
-      let avatar_input = document.querySelector('#id_avatar');
+    let avatar_input = document.querySelector('#id_avatar');
     var target = document.getElementById('profileImg')
     let input = document.querySelectorAll('input');
+    let value = ['foydalanuvchi nomi', 'Ismingiz', 'Familangiz', 'yoshingiz', ' nomeringiz', ]
     for (var i = 2; i < input.length-1; i++) {
         a = input[i].getAttribute('id').slice(3)
         input[i].setAttribute('autocomplete', 'off')
-        input[i].setAttribute('placeholder', a.toUpperCase())
+        input[i].setAttribute('placeholder', value[i-2])
         console.log()
     }
     let file;

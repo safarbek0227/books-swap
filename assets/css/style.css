@@ -155,8 +155,6 @@ main .box img {
 }
 
 main .box .book-btn {
-    width: 200px;
-    height: 60px;
     border-radius: 15px;
     padding: 15px 20px;
     color: #fff;
