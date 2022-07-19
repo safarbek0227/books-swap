@@ -77,6 +77,9 @@
     <h1>Mening E’lonlarim</h1>
     <div class="edit-section mt-5 ">
         <div class="row">
+            {% if form.errors %}
+              {{form.errors}}
+            {% endif %}
             {% for  book in  books %}
             <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-12">
                 <div class="card">

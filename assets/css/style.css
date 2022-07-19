@@ -734,6 +734,12 @@ header .search .selection-group .select-input select {
     list-style: none;
     font-size: 22px;
 }
+.container  .advert-section .advert-box ul li {
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .container  .advert-section .advert-box .about-box {
     font-size: larger;
 }
@@ -889,6 +895,12 @@ header .add_advert .white-card .about-book li p{
     list-style: none;
     margin-left: -25px;
     font-size: larger;
+}
+.edit-section .card ul li{
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .edit-section .card ul li strong{
     font-size: x-large;
