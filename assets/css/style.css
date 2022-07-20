@@ -129,12 +129,12 @@ main .box {
 }
 
 main .box .content h1 {
-    font-size: 40px;
+    font-size: 45px;
     align-items: center;
 }
 
 main .box .content p {
-    font-size: 18px;
+    font-size: 22px;
     line-height: 35px;
     margin-top: 25px;
 }
