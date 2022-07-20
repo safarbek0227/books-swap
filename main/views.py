@@ -3,7 +3,6 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.template.defaultfilters import slugify
 from django.core.paginator import Paginator
 from .models import *
 from account.models import User
@@ -47,7 +46,7 @@ def MyBookView(request):
 def delete_view(request, url):
     obj = get_object_or_404(Book, slug = url)
     if obj.author != request.user:
-        return render(request, "500.html")
+        return HttpResponseServerError()
     else:
         context ={'object': obj}
         if request.method =="POST":
@@ -68,7 +67,7 @@ class UpdateBook(LoginRequiredMixin, UpdateView):
     def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()
         if obj.author != self.request.user:
-            return render(request, "500.html")
+            return HttpResponseServerError()
         return super(UpdateBook, self).dispatch(request, *args, **kwargs)
     
     def get_context_data(self, **kwargs):
@@ -77,16 +76,12 @@ class UpdateBook(LoginRequiredMixin, UpdateView):
         context["books"] = book
         return context
     
-    def form_valid(self, form):
-        form.instance.is_checked = False
-        form.instance.is_view = False
-        return super().form_valid(form)
 
     
 def BookView(request, slug):
     book = Book.objects.select_related('genre', 'author').get(slug=slug)
-    author_books = Book.objects.select_related('genre', 'author').filter(is_checked = True).filter(author = book.author)[:4]
-    related_books = Book.objects.select_related('genre', 'author').filter(is_checked = True).filter(genre=book.genre)[:4]
+    author_books = Book.objects.select_related('genre', 'author').exclude(slug = slug).filter(is_checked = True, author = book.author)[:4]
+    related_books = Book.objects.select_related('genre', 'author').exclude(slug = slug).filter(is_checked = True, genre=book.genre)[:4]
     if book.is_checked == True or request.user.is_staff or book.author == request.user:
         context = {
             "object": book,
@@ -110,6 +105,5 @@ class BookCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         form.instance.location = self.request.user.address
-        form.instance.slug =  slugify(form.instance.title)   
         return super().form_valid(form)
     

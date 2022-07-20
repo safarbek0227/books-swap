@@ -30,12 +30,12 @@
                           </ul>
                           {% if book.is_checked %}
                           <span class="fa-solid fa-check">&nbsp &nbsp Sotuvda qoyildi</span>
-                          {% else %}
-                            {% if book.is_view %}
-                                <span class="fa-solid fa-ban">&nbsp sotish taqiqlandi</span>
-                            {% else %}
+                          {% endif %}
+                          {% if book.is_ban %}
+                            <span class="fa-solid fa-ban">&nbsp sotish taqiqlandi</span>
+                          {% endif %}
+                          {% if not book.is_checked and not book.is_ban %}
                                 <span class="fa-solid fa-envelopes-bulk">&nbsp korib chiqilmoqda</span>
-                            {% endif %}
                           {% endif %}
                           <br>
                           <span class="about-box">{{book.author.address}} <br> {{book.created_at}}</span>

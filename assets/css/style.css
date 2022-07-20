@@ -129,12 +129,12 @@ main .box {
 }
 
 main .box .content h1 {
-    font-size: 50px;
+    font-size: 35px;
     align-items: center;
 }
 
 main .box .content p {
-    font-size: 24px;
+    font-size: 18px;
     line-height: 35px;
     margin-top: 25px;
 }
@@ -151,14 +151,15 @@ main .box .box-img {
 }
 
 main .box img {
-    max-width: 120%;
+    transform: scale(1.5) translate(25px, 15px);
 }
 
 main .box .book-btn {
+    width: 150px;
     border-radius: 15px;
-    padding: 15px 20px;
+    padding: 12px;
     color: #fff;
-    font-size: 24px;
+    font-size: 22px;
     text-align: center;
     text-decoration: none;
     background-color: #f27d1d;
@@ -294,14 +295,11 @@ main .profile .change-button .btn-submit {
     }
 
     main .box img {
-        width: 280px;
-        position: absolute;
-        top: 2%;
-        right: -2%;
+        transform: translate(20px, 55px) scale(1.9);
     }
 }
 
-@media (max-width: 1290px) {
+@media (max-width: 1200px) {
     nav .logo {
         flex: 0.5;
     }
@@ -314,27 +312,24 @@ main .profile .change-button .btn-submit {
     nav .nav-items li {
         margin-left: 15px !important;
     }
-
+    main .box{
+        padding: 15px;
+    }
     main .box .content h1 {
-        font-size: 30px;
+        font-size: 25px;
     }
 
     main .box .content p {
-        font-size: medium;
+        font-size: 15px;
     }
 
     main .box img {
-        width: 240px;
-        position: absolute;
-        top: 2%;
-        right: -2%;
+        transform: translate(28px, 55px) scale(2.5);
+        z-index: 15;
     }
 
     main .box .book-btn {
-        font-size: larger;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        font-size: 14px;
     }
 }
 
@@ -409,25 +404,26 @@ main .profile .change-button .btn-submit {
 
 }
 
-@media(max-width: 1010px) {
+@media(max-width: 995px) {
     main .box {
         padding: 25px;
     }
 
     main .box .content h1 {
-        font-size: 30px;
+        font-size: 24px;
     }
 
     main .box .content p {
-        font-size: 20px;
+        line-height: inherit;
+        font-size: 14px;
     }
 
     main .box img {
-        width: 300px;
-        position: absolute;
-        top: 2%;
-        right: -10%;
-        margin-left: -55px;
+        transform: translate(15px, 25px) scale(1.2);
+    }
+    main .box .book-btn {
+        width: 150px;
+        font-size: 14px;
     }
 }
 
@@ -437,20 +433,21 @@ main .profile .change-button .btn-submit {
     }
 
     main .box .content p {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     main .box img {
-        width: 190px;
-        position: absolute;
-        top: 2%;
-        right: 2%;
+        transform: translate(0, 10px) scale(1.2);
     }
 }
 
 @media (max-width: 540px) {
+    main{
+        padding: 15px;
+        padding-top: 12vh;
+    }
     main .box {
-        /* padding: 5px; */
+        padding: 5px;
     }
 
     main .box .content h1 {
@@ -458,26 +455,20 @@ main .profile .change-button .btn-submit {
     }
 
     main .box .content p {
-        font-size: 10px;
-        line-height: 12px;
+        font-size: 14px;
+        line-height: inherit;
     }
     main .box .book-btn {
-        width: 100px;
-        height: 40px;
-        margin-top: -20px;
-        margin-left: 50px;
+        width: 120px;
+        margin-left: 25px;
         border-radius: 15px;
-        padding: 8px;
+        padding: 10px;
         color: #fff;
-        font-size: 12px;
+        font-size: 15px;
     }
 
     main .box img {
-        width: 180px;
-        position: absolute;
-        top: -15%;
-        right: -12%;
-        margin-left: -55px;
+        transform: translate(15px, 65px) scale(1.8);
     }
 
     main.login .form h1 {
@@ -556,24 +547,27 @@ main .profile .change-button .btn-submit {
 }
 
 @media (max-width: 360px) {
+    main{
+        padding: 5px;
+        padding-top: 12vh ;
+    }
+    main .box {
+        padding: 5px;
+    }
     main .box .content p {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     main .box img {
-        width: 120px;
-        position: absolute;
-        top: 2%;
+        transform: translate(5px, 85px) scale(2.4);
     }
     main .box .book-btn {
-        width: 80px;
-        height: 30px;
-        margin-top: -30px;
-        margin-left: 50px;
+        width: 100px;
+        margin-top: -20px;
         border-radius: 15px;
-        padding: 4px;
+        padding: 10px;
         color: #fff;
-        font-size: 8px;
+        font-size: 14px;
     }
 }
 
@@ -583,24 +577,20 @@ main .profile .change-button .btn-submit {
     }
 
     main .box {
-        padding: 5px;
+        padding: 8px;
     }
 
     main .box .content h1 {
-        font-size: 12px;
+        font-size: 16px;
     }
 
     main .box .content p {
         margin: 5px;
-        font-size: 6px;
+        font-size: 12px;
     }
 
     main .box img {
-        width: 130px;
-        position: absolute;
-        top: 2%;
-        right: -10%;
-        margin-left: -55px;
+        transform: translate(0px, 30px) scale(2);
     }
 
     main.login {
@@ -725,6 +715,7 @@ header .search .selection-group .select-input select {
 
 .container  .advert-section .advert-box img {
     width: 100%;
+    min-height: 150px;
     max-height: 300px;
 }
 

@@ -26,7 +26,7 @@ class User(AbstractUser):
 	surname = models.CharField("Surname", max_length=256)
 	username = models.CharField("Username", max_length=256, unique=True, null=True)
 	age = models.PositiveIntegerField("Age", null=True)
-	phone = models.CharField("Phone", max_length=128)
+	phone = models.CharField("Phone", max_length=18)
 	avatar = models.ImageField("Image", upload_to="user-images/", null=True, blank=True, default='default.png')
 	gender = models.CharField("Gender", max_length=128, choices=GENDER)
 	address = models.CharField("Address", max_length=128, choices=ADDRESS)

@@ -29,7 +29,7 @@
         </tr>
         <tr>
           <th>Is_checked</th>
-          <th>is_view</th>
+          <th>Is_ban</th>
           <th>title</th>
           <th>book author</th>
           <th>book author pen</th>
@@ -39,8 +39,8 @@
       <tbody>
         {% for book in obj_list %}
         <tr>
-          <td><input type="checkbox" {{ book.is_checked|yesno:'checked disabled,' }} id="{{book.id}}"></td>
-          <td><input type="checkbox" {{ book.is_view|yesno:'checked disabled,' }} id="{{book.id}}"></td>
+          <td><input type="radio" {{ book.is_checked|yesno:'checked disabled,' }} id="{{book.id}}" name="{{book.slug}}"></td>
+          <td><input type="radio" {{ book.is_ban |yesno:'checked disabled,' }} id="{{book.id}}" name="{{book.slug}}"></td>
           <td><a href="{% url 'main:detail' book.slug %}">{{book.title}}</a></td>
           <td>{{book.author.name}}</td>
           <td>{{book.author_pen}}</td>
@@ -98,7 +98,7 @@
         obj = {
           id: input[0].id,
           is_checked: input[0].checked,
-          is_view: input[1].checked
+          is_ban: input[1].checked
         }
         send(JSON.stringify(obj))
       }

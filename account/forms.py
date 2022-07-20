@@ -14,7 +14,7 @@ class UserRegisterForm(forms.ModelForm):
             "name":forms.widgets.TextInput(attrs={'class':'input', 'placeholder':'Ismingiz', 'autocomplete':"off"}),
             "surname":forms.widgets.TextInput(attrs={'class':'input', 'placeholder':'Familyangiz', 'autocomplete':"off"}),
             'age': forms.TextInput(attrs={'class': 'unique d-block', 'placeholder': 'Yoshingiz', 'autocomplete':"off"}),
-            'phone': forms.TextInput(attrs={'pattern': r'[0-9]{2}-[0-9]{3}-[0-9]{2}-[0-9]{2}', 'placeholder': 'Nomeringiz: 99-999-99-99', 'class': '' , 'autocomplete':"off"})
+            'phone': forms.TextInput(attrs={'pattern': r'[0-9]{9}', 'placeholder': 'Nomeringiz', 'class': '' , 'autocomplete':"off"})
         }
 
 

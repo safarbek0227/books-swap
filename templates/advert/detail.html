@@ -77,7 +77,9 @@
 
     <div class="container">
       <section class="advert-section mt-5">
+        {% if author_books %}
         <h1>Avtorning barcha e’lonlari:</h1>
+        {% endif %}
         <div class="row">
           {% for  book in author_books%}
           <div class="col-6 col-sm-6 col-md-4 col-lg-3">
@@ -107,7 +109,9 @@
     </section>
     <br><br>
     <section class="advert-section mt-5">
+      {% if books %}
         <h1>O‘xshash e’lonlar:</h1>
+      {% endif %}
         <div class="row">
           {% for  book in books%}
           <div class="col-6 col-sm-6 col-md-4 col-lg-3">

@@ -5,7 +5,18 @@
     <section class="add_advert">
         <h1>E’lon Joylash</h1>
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-4 order-lg-2">
+                <div class="white-card" style="display: flex;  align-items: center;  justify-content: center; flex-direction:column;">
+                    <h1 class="text-danger">Rostan ham ushbu postni o'chirib yubormoqchimisiz</h1>
+                    <br><br>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form }}
+                        <button class="btn" type="submit" style="max-width: 180px;"> ha</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-8 col-lg-fisrt">
                 <div class="white-card">
                     <div class="row">
                         <div class="col-sm-5">
@@ -33,17 +44,6 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="white-card" style="display: flex;  align-items: center;  justify-content: center; flex-direction:column;">
-                    <h1 class="text-danger">Rostan ham ushbu postni o'chirib yubormoqchimisiz</h1>
-                    <br><br>
-                    <form method="post">
-                        {% csrf_token %}
-                        {{ form }}
-                        <button class="btn" type="submit" style="max-width: 180px;"> ha</button>
-                        </form>
                 </div>
             </div>
         </div>

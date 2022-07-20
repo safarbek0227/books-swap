@@ -41,7 +41,7 @@
             {% endif %}
         </div>
         <div class="input-block">
-            <i class="fa-solid fa-phone"></i>
+          <i class="fa-solid fa-phone">+998</i>
             {{ form.phone }}
             {% if form.phone.errors %}
             <i class="fa-solid fa-triangle-exclamation text-danger"></i>
@@ -80,8 +80,9 @@
         a = input[i].getAttribute('id').slice(3)
         input[i].setAttribute('autocomplete', 'off')
         input[i].setAttribute('placeholder', value[i-2])
-        console.log()
     }
+    console.log(input[7])
+    input[6].setAttribute('pattern', '[0-9]{9}')
     let file;
 
     avatar_input.addEventListener("change", (event)=>{

@@ -15,7 +15,7 @@ def adminView(request):
         if request.method == 'POST':
             if form['category'].value()== 'unread':
                 context ={
-                    'obj_list': Book.objects.select_related('author', 'genre').filter(is_checked=False, is_view=False),
+                    'obj_list': Book.objects.select_related('author', 'genre').filter(is_checked=False, is_ban=False),
                     'can_changes':True,
                     'form': form
                 }
@@ -27,7 +27,7 @@ def adminView(request):
                 }
             if form['category'].value()== 'ban':
                 context ={
-                    'obj_list': Book.objects.select_related('author', 'genre').filter(is_checked=False, is_view=True),
+                    'obj_list': Book.objects.select_related('author', 'genre').filter(is_ban=True),
                     'can_changes':False,
                     'form': form
                 }
@@ -42,7 +42,7 @@ def checker(request):
             obj = json.loads(request.GET['data'])
             product = Book.objects.get(id = obj['id'])
             if object:
-                product.is_view = True if obj['is_view'] else False
+                product.is_ban = True if obj['is_ban'] else False
                 product.is_checked = True if obj['is_checked'] else False
 
                 product.save()

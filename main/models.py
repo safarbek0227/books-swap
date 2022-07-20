@@ -43,7 +43,7 @@ class Book(models.Model):
     created_at = models.DateTimeField("Created time", auto_now_add=True)
     likes_count = models.PositiveIntegerField("Likes", default=0)
     is_checked = models.BooleanField(default=False)
-    is_view = models.BooleanField(default=False)
+    is_ban = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.title}"
@@ -51,13 +51,26 @@ class Book(models.Model):
     @property
     def image_url(self):
         return f"{settings.HOST}{self.image.url}" if self.image else ""
-    def save(self, **kwargs):
+    def save(self,*args, **kwargs):
         slug = '%s' % (self.title)
         unique_slugify(self, slug)
-        super(Book, self).save()
+        try:
+            this = Book.objects.get(id=self.id)
+            print(type(this))
+            if this.image != self.image:
+                this.image.delete()
+
+        except: pass
+        super(Book, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        storage, path = self.image.storage, self.image.path
+        super(Book, self).delete(*args, **kwargs)
+        storage.delete(path)
 
 
     class Meta:
+        ordering = ['-id']
         db_table = "book"
         unique_together = ["slug"]
         verbose_name = "book"
