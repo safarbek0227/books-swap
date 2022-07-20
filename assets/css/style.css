@@ -129,7 +129,7 @@ main .box {
 }
 
 main .box .content h1 {
-    font-size: 35px;
+    font-size: 40px;
     align-items: center;
 }
 
@@ -548,7 +548,7 @@ main .profile .change-button .btn-submit {
 
 @media (max-width: 360px) {
     main{
-        padding: 5px;
+        padding: 10px;
         padding-top: 12vh ;
     }
     main .box {
@@ -559,7 +559,7 @@ main .profile .change-button .btn-submit {
     }
 
     main .box img {
-        transform: translate(5px, 85px) scale(2.4);
+        transform: translate(0px, 85px) scale(2);
     }
     main .box .book-btn {
         width: 100px;
