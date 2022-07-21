@@ -10,6 +10,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
   <link rel="stylesheet" href="/static/css/style.css">
   <title>Book swap</title>
 </head>
@@ -17,8 +18,10 @@
 <body class="page">
     <nav class="nav nav-advert" id="navbar">
         <div class="logo">
-          <img src="/static/img/logo.png" alt="">
-          <span>Book swap</span>
+          <a href="/" class="text-dark text-decoration-none">
+            <img src="/static/img/logo.png" alt="">
+            <span>Book swap</span>
+          </a>
         </div>
         <ul class="nav-items">
           <li>
@@ -89,7 +92,7 @@
             {% csrf_token %}
             <div class="input-group">
                 <i class="fas fa-search"></i>
-                <input type="text" name="query" placeholder="Search">
+                <input type="text" name="query" placeholder="qidiruv">
             </div>
           </form>
         </div>
@@ -102,7 +105,8 @@
 </footer>
 
 
-  <script src="/static/js/jquery.js"></script>
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/owl.carousel.min.js"></script>
   <script src="/static/js/script.js"></script>
   
 {% block code %}

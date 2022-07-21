@@ -46,6 +46,7 @@ nav {
     padding: 10px 5% 10px 7% !important;
     background: linear-gradient(103.17deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.05) 76.68%);
     backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
     align-items: baseline;
     align-content: flex-end;
     color: #fff;
@@ -124,6 +125,7 @@ main .box {
     padding: 50px;
     background: linear-gradient(103.17deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.05) 76.68%);
     backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
     border-radius: 15px;
     display: flex;
 }
@@ -177,9 +179,10 @@ main.login .form {
     max-width: 550px;
     min-height: 550px;
     margin: 10px;
-    padding: 50px;
+    padding: 25px;
     background: linear-gradient(103.17deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.05) 76.68%);
     backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
     margin: 5px;
     border-radius: 35px;
     text-align: center;
@@ -235,6 +238,7 @@ main .profile {
     padding: 50px;
     background: linear-gradient(103.17deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.05) 76.68%);
     backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
     margin: 5px;
     border-radius: 15px;
     display: flex;
@@ -451,11 +455,11 @@ main .profile .change-button .btn-submit {
     }
 
     main .box .content h1 {
-        font-size: 18px;
+        font-size: 24px;
     }
 
     main .box .content p {
-        font-size: 14px;
+        font-size: 16px;
         line-height: inherit;
     }
     main .box .book-btn {
@@ -716,7 +720,7 @@ header .search .selection-group .select-input select {
 .container  .advert-section .advert-box img {
     width: 100%;
     min-height: 150px;
-    max-height: 300px;
+    max-height: 250px;
 }
 
 .container  .advert-section .advert-box ul {
@@ -1403,4 +1407,7 @@ footer .input-group input {
   .paginator {
     font-size: 16pt;
   }
+}
+.disabled{
+    display: none;
 }
