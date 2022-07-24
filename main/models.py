@@ -46,8 +46,8 @@ class Book(models.Model):
     image = models.ImageField("Image", upload_to="book_images")
     created_at = models.DateTimeField("Created time", auto_now_add=True)
     likes_count = models.PositiveIntegerField("Likes", default=0)
-    is_checked = models.BooleanField(default=False)
-    is_ban = models.BooleanField(default=False)
+    is_checked = models.BooleanField()
+    is_ban = models.BooleanField()
 
     def __str__(self):
         return f"{self.title}"
@@ -56,24 +56,28 @@ class Book(models.Model):
     def image_url(self):
         return f"{settings.HOST}{self.image.url}" if self.image else ""
     def save(self,*args, **kwargs):
+        try:
+            this = Book.objects.select_related('author', 'genre').get(id=self.id)
+            if this.image != self.image:
+                this.image.delete()
+            if this.title != self.title or this.author_pen != self.author_pen or this.genre != self.genre or this.description != self.description :
+                self.is_checked = False
+                self.is_ban = False
+                bot.send_message(801531808, f'new \nhttps://bookswap.uz/book-list/{slug} \n https://bookswap.uz/admin') 
+
+        except: pass
+        
         slug = '%s' % (self.title)
         unique_slugify(self, slug)
-       
+        print( self.is_checked)
+
         if self.is_checked:
             img = 'https://bookswap.uz/media/book_images/{self.image}'
             text = f'<b>Nomi</b>: {self.title} \n<b>Muallifi</b>: {self.author_pen} \n<b>Janri</b>: {self.genre}\n<b>kitob haqida:</b> {self.description} \n\n <a href="https://bookswap.uz/book-list/{slug}">Batafsil</a> \n\n Bookswap.uz | t.me/bookswapuz'
-            bot.send_photo(chat_id='@bookswapuz', photo = img, caption=text, parse_mode='HTML')
-        else:
-            bot.send_message(801531808, f'new \nhttps://bookswap.uz/book-list/{slug} \n https://bookswap.uz/admin')  
-            
-        try:
-            this = Book.objects.get(id=self.id)
-            print(type(this))
-            if this.image != self.image:
-                this.image.delete()
-
-        except: pass
+            bot.send_photo(chat_id='@bookswapuz', photo = img, caption=text, parse_mode='HTML') 
+        
         super(Book, self).save(*args, **kwargs)
+            
 
     def delete(self, *args, **kwargs):
         storage, path = self.image.storage, self.image.path

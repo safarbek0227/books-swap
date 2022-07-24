@@ -75,7 +75,6 @@ class UpdateBook(LoginRequiredMixin, UpdateView):
         book = Book.objects.select_related('author', 'genre').filter(author=self.request.user)
         context["books"] = book
         return context
-    
 
     
 def BookView(request, slug):
@@ -105,5 +104,7 @@ class BookCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         form.instance.location = self.request.user.address
+        form.instance.is_checked = False
+        form.instance.is_ban = False
         return super().form_valid(form)
     
