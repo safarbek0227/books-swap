@@ -6,8 +6,10 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Bootstrap CSS -->
+  {% block meta %}
+  {% endblock meta %}
+  
+  <link rel="shortcut icon" href="/static/img/logo.png" type="image/png">
   <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
   <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
@@ -24,7 +26,6 @@
       </a>
     </div>
     <ul class="nav-items">
-      {% if request.user.is_authenticated %}
       <li>
         <a href="/">Bosh sahifa</a>
       </li>
@@ -37,7 +38,6 @@
       <li>
         <a href="{% url 'main:create-book' %}">Kitob joylash</a>
       </li>
-     {% endif %}
     </ul>
     <div class="menu-bar">
       {% if request.user.is_authenticated %}
@@ -58,6 +58,7 @@
 
   <script src="/static/js/jquery.js"></script>
   <script src="/static/js/script.js"></script>
+
   {% block code %}
   {% endblock code %}
 </body>

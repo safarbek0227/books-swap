@@ -53,15 +53,15 @@
               </li>
               <li>
                 <strong>Joylashuv:</strong>
-                <span>{{object.author.address}} Shaxri</span>
+                <span>{{object.author.address}} Shaxar</span>
               </li>
               <li>
                 <strong>Telefon raqimi:</strong>
-                <span>{{object.author.phone}}</span>
+                <span>+998{{object.author.phone}}</span>
               </li>
             </ul>
             <br>
-            <a href="tel: {{object.author.phone}}" class="text-light">
+            <a href="tel: +998{{object.author.phone}}" class="text-light">
               <button class="btn">
                 Qong'iroq
               </button>
@@ -142,3 +142,33 @@
 </div>
 
 {% endblock %}
+{% block code %}
+<script>
+  
+$(".owl-carousel").owlCarousel({
+  loop: false,
+  margin: 10,
+  dots: false,
+  nav: false,
+
+  responsive: {
+    0: {
+      items: 2
+    },
+    768: {
+      items: 3
+    },
+    1336: {
+      item: 4
+    },
+    1340: {
+      items: 4
+    }
+  }
+})
+</script>
+{% endblock code %}
+{% block meta %}
+<meta name="description" content="{{object.title}} Kitobi"/>
+<meta name="keywords" content="{{object.title}}, {{object.description}}, {{object.author_pen}}, {{object.genre}}">
+{% endblock meta %}

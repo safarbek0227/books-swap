@@ -2,8 +2,12 @@ from django.db import models
 from django.conf import settings
 from account.models import User
 from main.slug import unique_slugify
+import telebot
+from telebot import types
 
 
+TOKEN = '5447606124:AAH54uriHV3Ja_D_mlKOqf3Kf1cRCj86GdM'
+bot = telebot.TeleBot(TOKEN)
 # Create your models here.
 class Genre(models.Model):
     title = models.CharField("Title", max_length=256)
@@ -54,6 +58,14 @@ class Book(models.Model):
     def save(self,*args, **kwargs):
         slug = '%s' % (self.title)
         unique_slugify(self, slug)
+       
+        if self.is_checked:
+            img = 'https://bookswap.uz/media/book_images/{self.image}'
+            text = f'<b>Nomi</b>: {self.title} \n<b>Muallifi</b>: {self.author_pen} \n<b>Janri</b>: {self.genre}\n<b>kitob haqida:</b> {self.description} \n\n <a href="https://bookswap.uz/book-list/{slug}">Batafsil</a> \n\n Bookswap.uz | t.me/bookswapuz'
+            bot.send_photo(chat_id='@bookswapuz', photo = img, caption=text, parse_mode='HTML')
+        else:
+            bot.send_message(801531808, f'new \nhttps://bookswap.uz/book-list/{slug} \n https://bookswap.uz/admin')  
+            
         try:
             this = Book.objects.get(id=self.id)
             print(type(this))
