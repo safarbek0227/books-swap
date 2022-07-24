@@ -69,7 +69,6 @@ class Book(models.Model):
         
         slug = '%s' % (self.title)
         unique_slugify(self, slug)
-        print( self.is_checked)
 
         if self.is_checked:
             img = 'https://bookswap.uz/media/book_images/{self.image}'

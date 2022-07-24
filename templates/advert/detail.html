@@ -109,10 +109,10 @@
   </section>
   <section class="advert-section mt-5">
     {% if books %}
-    <h1>O'xshahs e’lonlar:</h1>
+    <h1>O'xshash e’lonlar:</h1>
     {% endif %}
     <div class="owl-carousel owl-theme">
-      {% for book in author_books%}
+      {% for book in books %}
       <div class="item d-inline">
         <a href="{% url 'main:detail' book.slug %}" class="text-dark" style="text-decoration: none;">
           <div class="advert-box">

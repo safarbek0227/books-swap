@@ -79,8 +79,8 @@ class UpdateBook(LoginRequiredMixin, UpdateView):
     
 def BookView(request, slug):
     book = Book.objects.select_related('genre', 'author').get(slug=slug)
-    author_books = Book.objects.select_related('genre', 'author').exclude(slug = slug).filter(is_checked = True, author = book.author)[:4]
-    related_books = Book.objects.select_related('genre', 'author').exclude(slug = slug).filter(is_checked = True, genre=book.genre)[:4]
+    author_books = Book.objects.select_related('genre', 'author').exclude(slug = slug).filter(is_checked = True, author = book.author)[:16]
+    related_books = Book.objects.select_related('genre', 'author').exclude(slug = slug).filter(is_checked = True, genre=book.genre)[:16]
     if book.is_checked == True or request.user.is_staff or book.author == request.user:
         context = {
             "object": book,

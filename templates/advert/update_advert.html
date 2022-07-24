@@ -78,7 +78,7 @@
       <h1>Sizning barcha e’lonlari:</h1>
       {% endif %}
       <div class="owl-carousel owl-theme">
-        {% for book in books%}
+        {% for book in books %}
         <div class="item d-inline">
           <a href="{% url 'main:detail' book.slug %}" class="text-dark" style="text-decoration: none;">
             <div class="advert-box">
@@ -110,7 +110,7 @@
 
 
 {% block code %}
-<script src="/static/js/resizer_image.js"></script>
+<script type="text/javascript" src="/static/js/resizer_image.js"></script>
 <script>
     let input = document.querySelectorAll('input');
     arr = ['', '', 'Sarlavha', 'Muallif', 'qidiruv']
