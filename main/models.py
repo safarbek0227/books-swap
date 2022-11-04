@@ -6,7 +6,7 @@ import telebot
 from pathlib import Path
 
 
-TOKEN = '5447606124:AAFxBER9Wfv7gwgJMSNina3Q5oRugSvAEiw'
+TOKEN = 'Your token'
 bot = telebot.TeleBot(TOKEN)
 # Create your models here.
 class Genre(models.Model):
@@ -58,7 +58,7 @@ class Book(models.Model):
     def save(self,*args, **kwargs):
         slug = '%s' % (self.title)
         unique_slugify(self, slug)
-        bot.send_message(801531808, f'new \nhttps://bookswap.uz/book-list/{slug} \n https://bookswap.uz/admin') 
+        bot.send_message('your id', f'new \nhttps://bookswap.uz/book-list/{slug} \n https://bookswap.uz/admin') 
         try:
             this = Book.objects.select_related('author', 'genre').get(id=self.id)
             if this.image != self.image:
@@ -73,7 +73,7 @@ class Book(models.Model):
         if self.is_checked:
             img = f'{Path(__file__).resolve().parent.parent}/{str(self.image.url)} '
             text = f'<b>Nomi</b>: {self.title} \n<b>Muallifi</b>: {self.author_pen} \n<b>Janri</b>: {self.genre}\n<b>kitob haqida:</b> {self.description} \n\n <a href="https://bookswap.uz/book-list/{slug}">Batafsil</a> \n\n Bookswap.uz | t.me/bookswapuz'
-            bot.send_photo(chat_id='@bookswapuz', photo = open(img, 'rb'), caption=text, parse_mode='HTML') 
+            bot.send_photo(chat_id='@your_chanel', photo = open(img, 'rb'), caption=text, parse_mode='HTML') 
         
         super(Book, self).save(*args, **kwargs)
             
