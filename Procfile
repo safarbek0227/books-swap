@@ -1,1 +1,1 @@
-web: gunicorn Book-swap.wsgi --log-file -
+web: gunicorn books-swap.wsgi --log-file -
